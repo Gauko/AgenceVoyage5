@@ -17,14 +17,14 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("greet")
 public interface GreetingService extends RemoteService {
 	
-//	public String greetServer(String input) throws IllegalArgumentException;
-//	public String login(String userMail, String password) throws ConnectionException;
-//	public void registerNewUser(String nom, String prenom, String password, String mail) throws Exception;
-//	public List<Type> getTypeTransport(String token) throws ConnectionException;
-//	public HashMap<String,List<String>> getCritere(String token) throws ConnectionException;
-//	public List<Offre> getOffreDuJour(String token) throws ConnectionException;
-//	public List<Trajet> rechercheTrajet(String token, HashMap<String,String> critereValeur) throws ConnectionException;
-//	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException;
+	public String greetServer(String input) throws IllegalArgumentException;
+	public String login(String userMail, String password) throws ConnectionException;
+	public void registerNewUser(String nom, String prenom, String password, String mail) throws Exception;
+	public List<Type> getTypeTransport(String token) throws ConnectionException;
+	public HashMap<String,List<String>> getCritere(String token) throws ConnectionException;
+	public List<Offre> getOffreDuJour(String token) throws ConnectionException;
+	public List<Trajet> rechercheTrajet(String token, HashMap<String,String> critereValeur) throws ConnectionException;
+	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException;
 
 	
 	
