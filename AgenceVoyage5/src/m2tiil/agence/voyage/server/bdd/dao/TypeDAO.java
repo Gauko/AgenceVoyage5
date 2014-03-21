@@ -52,6 +52,21 @@ public class TypeDAO
 		return new Type();
 	}
 	
+	public static Type findByLibelle(String libelle)
+	{
+		ArrayList<Type> Types = selectAll();
+		Iterator<Type> i = Types.iterator();
+		Type v = new Type();
+		for(;i.hasNext() ; v = i.next())
+		{
+			if (v.getLibelle() == libelle)
+			{
+				return v;
+			}
+		}
+		return new Type();
+	}
+	
 	public static boolean delete(Type t)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
