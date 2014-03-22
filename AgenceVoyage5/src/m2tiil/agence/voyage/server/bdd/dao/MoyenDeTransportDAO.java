@@ -54,6 +54,21 @@ public class MoyenDeTransportDAO
 		return new MoyenDeTransport();
 	}
 	
+	public static MoyenDeTransport findByNom(String nom)
+	{
+		ArrayList<MoyenDeTransport> MoyenDeTransports = selectAll();
+		Iterator<MoyenDeTransport> i = MoyenDeTransports.iterator();
+		MoyenDeTransport m = new MoyenDeTransport();
+		for(;i.hasNext() ; m = i.next())
+		{
+			if (m.getNom() == nom)
+			{
+				return m;
+			}
+		}
+		return new MoyenDeTransport();
+	}
+	
 	public static boolean delete(MoyenDeTransport m)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
