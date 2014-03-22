@@ -5,7 +5,16 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
+   <!-- Servlets -->
+ <servlet>
+  <servlet-name>GreetingServiceServlet</servlet-name>
+  <servlet-class>m2tiil.agence.voyage.server.GreetingServiceImpl</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+   <servlet-name>GreetingServiceServlet</servlet-name>
+   <url-pattern>/agencevoyage5/greet</url-pattern>
+ </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>

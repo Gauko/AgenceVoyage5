@@ -270,23 +270,23 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public List<Offre> getOffreDuJour(String token) throws ConnectionException{
 //		verifToken(token);
 		
-//		List<Offre> l = offreDao.selectAll();
+		List<Offre> l = offreDao.selectAll();
 		List<Offre> l2 = new ArrayList<Offre>();
-//		for(Offre o : l){
+		for(Offre o : l){
 //			if(o.getDate() == datedujour)
 			
 			
-//		}
+		}
 		
-//		Offre test = new Offre();
-//		test.setId(0);
-//		test.setIdTrajet(0);
-//		test.setLibelle("Offre test");
-//		test.setPlacesDisponibles(10);
-//		test.setPlacesTotales(20);
-//		test.setPrix(9999);
-//		
-//		l2.add(test);
+		Offre test = new Offre();
+		test.setId(0);
+		test.setIdTrajet(0);
+		test.setLibelle("Offre test");
+		test.setPlacesDisponibles(10);
+		test.setPlacesTotales(20);
+		test.setPrix(9999);
+		
+		l2.add(test);
 		
 		return l2;
 	}
