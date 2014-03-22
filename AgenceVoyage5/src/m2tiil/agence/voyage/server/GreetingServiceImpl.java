@@ -278,15 +278,15 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			
 		}
 		
-		Offre test = new Offre();
-		test.setId(0);
-		test.setIdTrajet(0);
-		test.setLibelle("Offre test");
-		test.setPlacesDisponibles(10);
-		test.setPlacesTotales(20);
-		test.setPrix(9999);
-		
-		l2.add(test);
+//		Offre test = new Offre();
+//		test.setId(0);
+//		test.setIdTrajet(0);
+//		test.setLibelle("Offre test");
+//		test.setPlacesDisponibles(10);
+//		test.setPlacesTotales(20);
+//		test.setPrix(9999);
+//		
+//		l2.add(test);
 		
 		return l2;
 	}
