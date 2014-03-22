@@ -28,4 +28,6 @@ public interface GreetingService extends RemoteService {
 
 	
 	
+	//modif
+	
 }
