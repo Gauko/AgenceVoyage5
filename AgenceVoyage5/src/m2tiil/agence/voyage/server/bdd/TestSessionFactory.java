@@ -104,7 +104,20 @@ public class TestSessionFactory {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void testInsert()
+	{
+		System.out.println("Insertion du moyen de transport PousPous ChinaAirlines");
+		Type t = new Type(0, "PousPous");
+		int idT = TypeDAO.save(t);
+		Societe s = new Societe(0,"ChinaAirlines");
+		int idS = SocieteDAO.save(s);
+		
+		MoyenDeTransport m = new MoyenDeTransport(0, "PousPous ChinaAirlines", idT, idS);
+		MoyenDeTransportDAO.save(m);
+	}
+	
+	public void testAffiche()
+	{
 		testAfficheMoyenDeTransport();
 		testAfficheOffre();
 		testAfficheReservation();
@@ -113,6 +126,10 @@ public class TestSessionFactory {
 		testAfficheType();
 		testAfficheUtilisateur();
 		testAfficheVille();
+	}
+	
+	public static void main(String[] args) {
+
 		
 		
 		

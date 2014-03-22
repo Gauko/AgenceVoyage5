@@ -51,7 +51,7 @@ public class MoyenDeTransportDAO
 				return m;
 			}
 		}
-		return new MoyenDeTransport();
+		return null;
 	}
 	
 	public static MoyenDeTransport findByNom(String nom)
@@ -66,7 +66,7 @@ public class MoyenDeTransportDAO
 				return m;
 			}
 		}
-		return new MoyenDeTransport();
+		return null;
 	}
 	
 	public static boolean delete(MoyenDeTransport m)
@@ -83,7 +83,7 @@ public class MoyenDeTransportDAO
 		return true;
 	}
 	
-	public static boolean save(MoyenDeTransport m)
+	public static int save(MoyenDeTransport m)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
@@ -94,7 +94,7 @@ public class MoyenDeTransportDAO
 		tx.commit();
 		
 		s.close();
-		return true;
+		return findByNom(m.getNom()).getId();
 	}
 	
 	public static boolean update(MoyenDeTransport origine, MoyenDeTransport modif)

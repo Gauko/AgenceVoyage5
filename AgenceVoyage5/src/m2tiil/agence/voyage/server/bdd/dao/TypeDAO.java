@@ -81,7 +81,7 @@ public class TypeDAO
 		return true;
 	}
 	
-	public static boolean save(Type t)
+	public static int save(Type t)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
@@ -92,7 +92,7 @@ public class TypeDAO
 		tx.commit();
 		
 		s.close();
-		return true;
+		return findByLibelle(t.getLibelle()).getId();
 	}
 	
 	public static boolean update(Type origine, Type modif)

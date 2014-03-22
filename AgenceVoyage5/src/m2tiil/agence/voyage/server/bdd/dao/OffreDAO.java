@@ -5,6 +5,7 @@ import java.util.*;
 import org.hibernate.*;
 
 import m2tiil.agence.voyage.server.bdd.HibernateUtil;
+import m2tiil.agence.voyage.shared.bdd.pojo.MoyenDeTransport;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 
 public class OffreDAO 
@@ -57,7 +58,51 @@ public class OffreDAO
 				return o;
 			}
 		}
-		return new Offre();
+		return null;
+	}
+	
+	public static Offre findByNom(String nom)
+	{
+		ArrayList<Offre> Offre = selectAll();
+		Iterator<Offre> i = Offre.iterator();
+		Offre o = new Offre();
+		for(;i.hasNext() ; o = i.next())
+		{
+			if (o.getLibelle() == nom)
+			{
+				return o;
+			}
+		}
+		return null;
+	}
+	
+	public static ArrayList<Offre> findByPeriod(Date start, Date end) 
+	//la recherche peut etre ouverte - si end est nul on aura toutes les date a partir de start
+	{
+		boolean startOK = false;
+		boolean endOK = false;
+		ArrayList<Offre> Offre = selectAll();
+		ArrayList<Offre> res = new ArrayList<Offre>();
+		Iterator<Offre> i = Offre.iterator();
+		Offre o = new Offre();
+		for(;i.hasNext() ; o = i.next())
+		{
+			if (o.getDateDebut().before(start))
+			{
+				startOK = true;
+			}
+			
+			if (o.getDateFin().before(end))
+			{
+				endOK = true;
+			}
+			
+			if((startOK || start == null)&&(endOK || end == null))
+			{
+				res.add(o);
+			}
+		}
+		return res;
 	}
 	
 	public static boolean delete(Offre o)
@@ -74,7 +119,7 @@ public class OffreDAO
 		return true;
 	}
 	
-	public static boolean save(Offre o)
+	public static int save(Offre o)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
@@ -85,7 +130,7 @@ public class OffreDAO
 		tx.commit();
 		
 		s.close();
-		return true;
+		return findByNom(o.getLibelle()).getId();
 	}
 	
 	public static boolean update(Offre origine, Offre modif)

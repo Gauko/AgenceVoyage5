@@ -5,6 +5,7 @@ import java.util.*;
 import org.hibernate.*;
 
 import m2tiil.agence.voyage.server.bdd.HibernateUtil;
+import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 
 public class TrajetDAO 
@@ -54,6 +55,35 @@ public class TrajetDAO
 		return new Trajet();
 	}
 	
+	public static ArrayList<Trajet> findByVilles(int start, int end) 
+	//la recherche peut etre ouverte - si end est egal a -1 on aura tous les trajets a partir de start
+	{
+		boolean startOK = false;
+		boolean endOK = false;
+		ArrayList<Trajet> Trajet = selectAll();
+		ArrayList<Trajet> res = new ArrayList<Trajet>();
+		Iterator<Trajet> i = Trajet.iterator();
+		Trajet t = new Trajet();
+		for(;i.hasNext() ; t = i.next())
+		{
+			if (t.getIdDepart() == start)
+			{
+				startOK = true;
+			}
+			
+			if (t.getIdArrivee() ==end)
+			{
+				endOK = true;
+			}
+			
+			if((startOK || start == -1)&&(endOK || end == -1))
+			{
+				res.add(t);
+			}
+		}
+		return res;
+	}
+
 	public static boolean delete(Trajet t)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();

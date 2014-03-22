@@ -52,6 +52,21 @@ public class SocieteDAO
 		return new Societe();
 	}
 	
+	public static Societe findByNom(String nom)
+	{
+		ArrayList<Societe> Societes = selectAll();
+		Iterator<Societe> i = Societes.iterator();
+		Societe so = new Societe();
+		for(;i.hasNext() ; so = i.next())
+		{
+			if (so.getNom() == nom)
+			{
+				return so;
+			}
+		}
+		return new Societe();
+	}
+	
 	public static boolean delete(Societe so)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
@@ -66,7 +81,7 @@ public class SocieteDAO
 		return true;
 	}
 	
-	public static boolean save(Societe so)
+	public static int save(Societe so)
 	{
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
@@ -77,7 +92,7 @@ public class SocieteDAO
 		tx.commit();
 		
 		s.close();
-		return true;
+		return findByNom(so.getNom()).getId();
 	}
 	
 	public static boolean update(Societe origine, Societe modif)

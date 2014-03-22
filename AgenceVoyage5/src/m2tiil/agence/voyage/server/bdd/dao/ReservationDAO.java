@@ -50,7 +50,39 @@ public class ReservationDAO
 				return r;
 			}
 		}
-		return new Reservation();
+		return null;
+	}
+	
+	public static ArrayList<Reservation> findByIdOffre(int idOffre)
+	{
+		ArrayList<Reservation> Reservations = selectAll();
+		ArrayList<Reservation> res = new ArrayList<Reservation>();
+		Iterator<Reservation> i = Reservations.iterator();
+		Reservation r = new Reservation();
+		for(;i.hasNext() ; r = i.next())
+		{
+			if (r.getIdOffre() == idOffre)
+			{
+				res.add(r);
+			}
+		}
+		return res;
+	}
+	
+	public static ArrayList<Reservation> findByIdUtilisateur(int idUtilisateur)
+	{
+		ArrayList<Reservation> Reservations = selectAll();
+		ArrayList<Reservation> res = new ArrayList<Reservation>();
+		Iterator<Reservation> i = Reservations.iterator();
+		Reservation r = new Reservation();
+		for(;i.hasNext() ; r = i.next())
+		{
+			if (r.getIdUtilisateur() == idUtilisateur)
+			{
+				res.add(r);
+			}
+		}
+		return res;
 	}
 	
 	public static boolean delete(Reservation r)
