@@ -31,6 +31,6 @@ public interface GreetingServiceAsync {
 	void rechercheTrajet(String token, HashMap<String, String> critereValeur,
 			AsyncCallback<List<Trajet>> callback);
 
-	void doReservation(String token, String user, Object panier,
-			Object carteBanquaire, AsyncCallback<Object> callback);
+//	void doReservation(String token, String user, Object panier,
+//			Object carteBanquaire, AsyncCallback<Object> callback);
 }

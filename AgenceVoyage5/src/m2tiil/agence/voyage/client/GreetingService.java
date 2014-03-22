@@ -24,7 +24,7 @@ public interface GreetingService extends RemoteService {
 	public HashMap<String,List<String>> getCritere(String token) throws ConnectionException;
 	public List<Offre> getOffreDuJour(String token) throws ConnectionException;
 	public List<Trajet> rechercheTrajet(String token, HashMap<String,String> critereValeur) throws ConnectionException;
-	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException;
+//	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException;
 
 	
 	

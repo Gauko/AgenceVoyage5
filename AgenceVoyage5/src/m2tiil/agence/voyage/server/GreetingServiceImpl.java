@@ -309,21 +309,21 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	
-	/**
-	 * Effectue une réservation
-	 * @param token
-	 * @param user
-	 * @param panier
-	 * @param carteBanquaire
-	 * @return
-	 * @throws ConnectionException
-	 */
-	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException{
-		verifToken(token);
-		
-		
-		return null;
-	}
+//	/**
+//	 * Effectue une réservation
+//	 * @param token
+//	 * @param user
+//	 * @param panier
+//	 * @param carteBanquaire
+//	 * @return
+//	 * @throws ConnectionException
+//	 */
+//	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException{
+//		verifToken(token);
+//		
+//		
+//		return null;
+//	}
 	
 	
 	
