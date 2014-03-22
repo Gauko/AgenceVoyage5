@@ -9,26 +9,21 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
+
 public class Connection extends Composite {
 
 	public interface UiUserConnection extends UiBinder<Widget, Connection> {
 
 	}
-
-	private static UiUserConnection uiUserConnection = GWT
-			.create(UiUserConnection.class);
-
-	@UiField
-	Label login;
-	@UiField
-	Label password;
-	@UiField
-	Button connect;
-	@UiField
-	TextBox loginName;
-	@UiField
-	TextBox paswd;
-
+	
+	private static UiUserConnection uiUserConnection = GWT.create(UiUserConnection.class);
+	
+	@UiField Label login;
+	@UiField Label password;
+	@UiField Button connect;
+	@UiField TextBox loginName;
+	@UiField TextBox paswd;
+	
 	public Connection() {
 		initWidget(uiUserConnection.createAndBindUi(this));
 	}

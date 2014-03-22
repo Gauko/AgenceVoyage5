@@ -1,7 +1,5 @@
 package m2tiil.agence.voyage.shared.bdd.pojo;
 
-import java.util.Date;
-
 import javax.persistence.*;
 
 @Entity
@@ -23,26 +21,18 @@ public class Offre
 	@Column(name="placesDisponibles")
 	private int placesDisponibles;
 	
-	@Column(name="dateDebut")
-	private Date dateDebut;
-	
-	@Column(name="dateFin")
-	private Date dateFin;
-	
 	@JoinColumn(name="idTrajet")
 	private int idTrajet;
 	//private Trajet trajet;
 	
 	public Offre(int id, String libelle, double prix, int placesTotales,
-			int placesDisponibles, Date dateDebut, Date dateFin, int idTrajet) {
+			int placesDisponibles, int idTrajet) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.placesTotales = placesTotales;
 		this.placesDisponibles = placesDisponibles;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
 		this.idTrajet = idTrajet;
 	}
 	
@@ -89,22 +79,6 @@ public class Offre
 	public void setPlacesDisponibles(int placesDisponibles) {
 		this.placesDisponibles = placesDisponibles;
 	}
-	
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	public Date getDateFin() {
-		return dateFin;
-	}
-
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
 
 	public int getIdTrajet() {
 		return idTrajet;
@@ -116,7 +90,7 @@ public class Offre
 	
 	public String toString()
 	{
-		return "Offre - id : "+id+" libelle : "+libelle+" prix : "+prix+" placesTotales : "+placesTotales+" placesDisponibles : "+placesDisponibles+" id Trajet : "+idTrajet+" dateDebut : "+dateDebut+" dateFin : "+dateFin;
+		return "Offre - id : "+id+" libelle : "+libelle+" prix : "+prix+" placesTotales : "+placesTotales+" placesDisponibles : "+placesDisponibles+" id Trajet : "+idTrajet;
 	}
 		
 }
