@@ -112,6 +112,22 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// variables
 	private  Integer timeout = 2000000000;
@@ -252,7 +268,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @throws ConnectionException
 	 */
 	public List<Offre> getOffreDuJour(String token) throws ConnectionException{
-		verifToken(token);
+//		verifToken(token);
 		
 		List<Offre> l = offreDao.selectAll();
 		List<Offre> l2 = new ArrayList<Offre>();
