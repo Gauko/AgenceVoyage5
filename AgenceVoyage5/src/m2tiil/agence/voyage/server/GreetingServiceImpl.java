@@ -114,10 +114,13 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// variables
-	private  Integer timeout = 20000;
+	private  Integer timeout = 2000000000;
 	private  Integer nbTentative = 20000;
 	
 	private  Hashtable<String,Date> listTokens = new Hashtable<String,Date>();
+	{
+		listTokens.put("",new Date());
+	}
 	
 	/**
 	 * Methode de verification du token de connexion
@@ -258,6 +261,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			
 			
 		}
+		
+		
 		
 		return l2;
 	}
