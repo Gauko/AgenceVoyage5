@@ -18,9 +18,13 @@ import m2tiil.agence.voyage.server.bdd.dao.VilleDAO;
 import m2tiil.agence.voyage.shared.ConnectionException;
 import m2tiil.agence.voyage.shared.FieldVerifier;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
+import m2tiil.agence.voyage.shared.bdd.pojo.Reservation;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
 import m2tiil.agence.voyage.shared.bdd.pojo.Utilisateur;
+import m2tiil.agence.voyage.shared.util.critere.Critere;
+import m2tiil.agence.voyage.shared.util.critere.CritereOffreDate;
+import m2tiil.agence.voyage.shared.util.critere.CritereTrajetDate;
 
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -44,29 +48,29 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	
-	private HashMap<String,List<String>> listCriteres = new HashMap<String,List<String>>();
-	{
-		listCriteres.put("date aller", new ArrayList<String>());
-		listCriteres.get("date aller").add("<");
-		listCriteres.get("date aller").add(">");
-		listCriteres.get("date aller").add("=");
-		
-		listCriteres.put("date retour", new ArrayList<String>());
-		listCriteres.get("date retour").add("<");
-		listCriteres.get("date retour").add(">");
-		listCriteres.get("date retour").add("=");
-		
-		
-		//date aller, < > =
-		//date retour, < > =
-		//prix, < > =,
-		//prix (compris entre x et y)
-		//type, & | =
-		//ville depart,
-		//ville arrivé,
-		//
-		
-	}
+//	private HashMap<String,List<String>> listCriteres = new HashMap<String,List<String>>();
+//	{
+//		listCriteres.put("date aller", new ArrayList<String>());
+//		listCriteres.get("date aller").add("<");
+//		listCriteres.get("date aller").add(">");
+//		listCriteres.get("date aller").add("=");
+//		
+//		listCriteres.put("date retour", new ArrayList<String>());
+//		listCriteres.get("date retour").add("<");
+//		listCriteres.get("date retour").add(">");
+//		listCriteres.get("date retour").add("=");
+//		
+//		
+//		//date aller, < > =
+//		//date retour, < > =
+//		//prix, < > =,
+//		//prix (compris entre x et y)
+//		//type, & | =
+//		//ville depart,
+//		//ville arrivé,
+//		//
+//		
+//	}
 	
 	
 	
@@ -135,7 +139,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	private  Hashtable<String,Date> listTokens = new Hashtable<String,Date>();
 	{
-		listTokens.put("",new Date());
+		listTokens.put("",new Date((new Date()).getTime()+timeout));
 	}
 	
 	/**
@@ -197,7 +201,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		if(i == nbTentative){
 			throw new ConnectionException("Erreur, il n'y a plus de connection disponible");
 		}
-		listTokens.put(token, new Date(timeout));
+		Date timeout = new Date();
+		
+		listTokens.put(token, new Date(timeout.getTime()+this.timeout));
 		
 		return token;
 	}
@@ -234,7 +240,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	/**
-	 * Retourne la liste des type de transport disponible
+	 * Retourne la liste des types de transport disponible
 	 * @param token
 	 * @return
 	 * @throws ConnectionException
@@ -247,18 +253,20 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return l;
 	}
 	
-	/**
-	 * Retourne la liste des critères de recherche
-	 * @param token
-	 * @return
-	 * @throws ConnectionException
-	 */
-	public HashMap<String,List<String>> getCritere(String token) throws ConnectionException{
-		verifToken(token);
-		
-		
-		return listCriteres;
-	}
+//	/**
+//	 * Retourne la liste des critères de recherche
+//	 * @param token
+//	 * @return
+//	 * @throws ConnectionException
+//	 */
+//	public HashMap<String,List<String>> getCritere(String token) throws ConnectionException{
+//		verifToken(token);
+//		
+//		
+//		return listCriteres;
+//	}
+	
+	
 	
 	
 	/**
@@ -268,25 +276,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @throws ConnectionException
 	 */
 	public List<Offre> getOffreDuJour(String token) throws ConnectionException{
-//		verifToken(token);
-		
+		verifToken(token);
+		Date d = new Date();
 		List<Offre> l = offreDao.selectAll();
 		List<Offre> l2 = new ArrayList<Offre>();
 		for(Offre o : l){
-//			if(o.getDate() == datedujour)
-			
+			if(o.getDateDebut().compareTo(d) <0 && o.getDateFin().compareTo(d)>0 ){
+				l2.add(o);
+			}
 			
 		}
 		
-		Offre test = new Offre();
-		test.setId(0);
-		test.setIdTrajet(0);
-		test.setLibelle("Offre test");
-		test.setPlacesDisponibles(10);
-		test.setPlacesTotales(20);
-		test.setPrix(9999);
-		
-		l2.add(test);
 		
 		return l2;
 	}
@@ -300,29 +300,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 * @throws ConnectionException
 	 */
-	public List<Trajet> rechercheTrajet(String token, HashMap<String,String> critereValeur) throws ConnectionException{
+	public List<Trajet> rechercheTrajet(String token, List<Critere> listCritere) throws ConnectionException{
 		verifToken(token);
 		List<Trajet> l = trajetDao.selectAll();
 		List<Trajet> l2 = new ArrayList<Trajet>();
 		boolean keep = true;
 		
 		for(Trajet t : l){
-			if(critereValeur.get("date aller") != null){
-				String c = critereValeur.get("date aller");
-				if(c.equals("<")){
-					//
-				}else if(c.equals(">")){
-					//
-				}else if(c.equals("=")){
-					//
-				}else{
-					keep = false;
+			keep = true;
+			for(Critere c : listCritere){
+				if(c.isActivated()){
+					keep = keep && c.correspond(t);
 				}
-				
-			}else if(critereValeur.get("date retour") != null){
-				
 			}
-			
 			if(keep){
 				l2.add(t);
 			}
@@ -333,21 +323,17 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	
-//	/**
-//	 * Effectue une réservation
-//	 * @param token
-//	 * @param user
-//	 * @param panier
-//	 * @param carteBanquaire
-//	 * @return
-//	 * @throws ConnectionException
-//	 */
-//	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException{
-//		verifToken(token);
-//		
-//		
-//		return null;
-//	}
+	/**
+	 * Effectue une réservation
+	 * @throws ConnectionException
+	 */
+	public void doReservation(String token, List<Reservation> panier, String cbNum) throws ConnectionException{
+		verifToken(token);
+		
+		
+		
+		
+	}
 	
 	
 	
@@ -360,16 +346,24 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public static void main(String[] args) {
 		GreetingServiceImpl a = new GreetingServiceImpl();
 		
+		List<Critere> lc = new ArrayList<Critere>();
+		CritereTrajetDate c = new CritereTrajetDate();
+		c.setActivated(true);
+		c.setComparator(Critere.Comparator.EQUAL);
+		c.setFirstValue(new Date("2014/03/03"));
+		
+		lc.add(c);
 		
 		try {
-			a.login("toto", "toto");
+			List<Trajet> res = a.rechercheTrajet("", lc);
+			
+			System.out.println(res.size());
+			
 		} catch (ConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		for(String s : a.getCritere(null)){
-//			
-//		}
+		
 	}
 	
 	

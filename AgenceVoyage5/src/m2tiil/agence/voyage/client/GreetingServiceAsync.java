@@ -6,6 +6,7 @@ import java.util.List;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
+import m2tiil.agence.voyage.shared.util.critere.Critere;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -23,12 +24,12 @@ public interface GreetingServiceAsync {
 
 	void getTypeTransport(String token, AsyncCallback<List<Type>> callback);
 
-	void getCritere(String token,
-			AsyncCallback<HashMap<String, List<String>>> callback);
+//	void getCritere(String token,
+//			AsyncCallback<HashMap<String, List<String>>> callback);
 
 	void getOffreDuJour(String token, AsyncCallback<List<Offre>> callback);
 
-	void rechercheTrajet(String token, HashMap<String, String> critereValeur,
+	void rechercheTrajet(String token, List<Critere> listCritere,
 			AsyncCallback<List<Trajet>> callback);
 
 //	void doReservation(String token, String user, Object panier,
