@@ -1,9 +1,11 @@
 package m2tiil.agence.voyage.shared.bdd.pojo;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Reservation 
+public class Reservation  implements Serializable
 {
 	@Id @GeneratedValue 
 	@Column(name="id")

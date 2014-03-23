@@ -1,8 +1,9 @@
 package m2tiil.agence.voyage.shared.util.critere;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Critere<T extends Object, TVALUE extends Object> {
+public abstract class Critere<T extends Object, TVALUE extends Object>  implements Serializable {
 
 	public enum Comparator {SUPERIOR,INFERIOR,EQUAL,BETWEEN};
 	
@@ -12,7 +13,12 @@ public abstract class Critere<T extends Object, TVALUE extends Object> {
 	protected TVALUE value1;
 	protected TVALUE value2;
 	
-		
+	
+	/**
+	 * NE PAS UTILISER CÔTE CLIENT !!!
+	 * @param object
+	 * @return
+	 */
 	public abstract boolean correspond(T object);
 	
 	
