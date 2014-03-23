@@ -1,5 +1,7 @@
 package m2tiil.agence.voyage.shared.util.critere;
 
+import java.util.Date;
+
 public abstract class Critere<T extends Object, TVALUE extends Object> {
 
 	public enum Comparator {SUPERIOR,INFERIOR,EQUAL,BETWEEN};
@@ -7,17 +9,28 @@ public abstract class Critere<T extends Object, TVALUE extends Object> {
 	protected Comparator comparator;
 	protected boolean activated;
 	
+	protected TVALUE value1;
+	protected TVALUE value2;
+	
 		
 	public abstract boolean correspond(T object);
 	
 	
 	
 	
-	public abstract void setFirstValue(TVALUE o);
-	public abstract void setSecondValue(TVALUE o);
+	public void setFirstValue(TVALUE o){
+		value1 = o;
+	}
+	public void setSecondValue(TVALUE o){
+		value2 = o;
+	}
 	
-	public abstract String getFirstValue();
-	public abstract String getSecondValue();
+	public TVALUE getFirstValue(){
+		return value1;
+	}
+	public TVALUE getSecondValue(){
+		return value2;
+	}
 	
 	
 	

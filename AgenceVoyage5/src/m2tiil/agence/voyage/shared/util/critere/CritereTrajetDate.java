@@ -10,8 +10,7 @@ import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 
 public class CritereTrajetDate extends Critere<Trajet,Date> {
 
-	private Date value1;
-	private Date value2;
+	
 	
 	
 
@@ -79,16 +78,7 @@ public class CritereTrajetDate extends Critere<Trajet,Date> {
 	}
 	
 	
-	@Override
-	public String getFirstValue() {
-		return ""+value1;
-	}
-
-	@Override
-	public String getSecondValue() {
-		return ""+value2;	
-	}
-
+	
 	
 
 }

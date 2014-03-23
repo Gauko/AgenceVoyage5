@@ -4,7 +4,7 @@ import java.util.Date;
 
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 
-public class CritereOffreDate extends Critere<Offre,Date> {
+public class CritereOffrePrix extends Critere<Offre,Double> {
 
 	
 	
@@ -19,23 +19,23 @@ public class CritereOffreDate extends Critere<Offre,Date> {
 		
 		switch(comparator){
 		case INFERIOR : {
-			if(value1.compareTo(object.getDateDebut())>0 ){
+			if(value1.compareTo(object.getPrix())>0 ){
 				return false;
 			}
 		}break;
 		case SUPERIOR : {
-			if(value1.compareTo(object.getDateDebut())<0 ){
+			if(value1.compareTo(object.getPrix())<0 ){
 				return false;
 			}
 		}break;
 		case BETWEEN : {
 			if(value2 == null) return false;
-			if( value1.compareTo(object.getDateDebut())<0 || value2.compareTo(object.getDateFin())>0){
+			if( value1.compareTo(object.getPrix())<0 || value2.compareTo(object.getPrix())>0){
 				return false;
 			}
 		}break;
 		case EQUAL : {
-			if(!value1.equals(object.getDateDebut()) ){
+			if(!value1.equals(object.getPrix()) ){
 				return false;
 			}
 		}break;
@@ -46,22 +46,8 @@ public class CritereOffreDate extends Critere<Offre,Date> {
 		return true;
 	}
 
-	@Override
-	public void setFirstValue(Date o) {
-//		if(o instanceof Date){
-			value1 = (Date)o;
-//		}
-	}
+	
 
-	@Override
-	public void setSecondValue(Date o) {
-//		if(o instanceof Date){
-			value2 = (Date)o;
-//		}		
-	}
-	
-	
-	
 	
 
 }
