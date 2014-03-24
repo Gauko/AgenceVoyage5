@@ -55,7 +55,8 @@ public class Research extends Composite {
 		ListFortfais.addItem("Jeune (12-17 ans)");
 		ListFortfais.addItem("Junior (18-24 ans)");
 		ListFortfais.addItem("Sénior (+ de 65 ans)");
-	}
+	} 
+	
 	public Research() {
 		initWidget(binder.createAndBindUi(this));
 	}
