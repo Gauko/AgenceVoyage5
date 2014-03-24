@@ -4,6 +4,7 @@ import m2tiil.agence.voyage.client.GreetingService;
 import m2tiil.agence.voyage.client.GreetingServiceAsync;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -39,7 +40,7 @@ public class Connection extends Composite {
 	}
 	
 	@UiHandler("connect")
-	public void acceptConnexion(){
+	public void acceptConnexion(ClickEvent e){
 		if(loginName.getValue().length() > 0 && paswd.getValue().length() >0){
 			service.login(loginName.getText(), paswd.getText(), new AsyncCallback<String>() {
 				
