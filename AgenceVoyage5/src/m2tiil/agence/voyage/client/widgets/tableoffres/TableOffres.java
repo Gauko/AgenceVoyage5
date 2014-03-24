@@ -75,7 +75,7 @@ public class TableOffres extends Composite {
 		cellTable.addColumn(checkColumn);
 		cellTable.addColumn(titleCollumn, "Intitulle");
 		cellTable.addColumn(priceColumn, "Prix");
-		service.getOffreDuJour(new AsyncCallback<List<Offre>>(){
+		service.getOffreDuJour("",new AsyncCallback<List<Offre>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
