@@ -8,7 +8,7 @@
 	</ui:style>
 
 	<g:FlowPanel styleName="{style.panel}">
-		<g:TabPanel height="322px" width="429px">
+		<g:TabPanel height="422px" width="429px">
 			<g:Tab text="New tab">
 				<g:VerticalPanel width="5cm" height="3cm">
 					<g:HorizontalPanel height="25px" width="402px">
@@ -16,19 +16,20 @@
 						<g:RadioButton name="Aller-Retour" height="20px" width="197px">Aller-Retour</g:RadioButton>
 					</g:HorizontalPanel>
 					<g:HorizontalPanel width="405px">
-						<g:ListBox width="202px"/>
-						<g:ListBox width="198px"/>
+						<g:ListBox width="202px" ui:field="aeroportDepart"/>
+						<g:ListBox width="198px" ui:field="aeroportArrive"/>
 					</g:HorizontalPanel>
 					<g:HorizontalPanel>
-						<p1:DatePicker/>
-						<p1:DatePicker width="213px"/>
+						<p1:DatePicker ui:field="dateDepart"/>
+						<p1:DatePicker width="213px" ui:field="dateArrive"/>
 					</g:HorizontalPanel>
 					<g:HorizontalPanel>
-						<g:CheckBox text="New CheckBox" width="401px"/>
+						<g:CheckBox text="Meilleur Prix a +- 3j" width="401px" ui:field="meilleurPrix"/>
 					</g:HorizontalPanel>
-					<g:HorizontalPanel width="401px">
-						<g:ListBox width="143px"/>
-						<g:ListBox width="161px"/>
+					<g:HorizontalPanel width="437px">
+						<g:ListBox width="143px" ui:field="listPersonne"/>
+						<g:ListBox width="161px" ui:field="ListFortfais"/>
+						<g:Button ui:field="validate">Validate</g:Button>
 					</g:HorizontalPanel>
 				</g:VerticalPanel>
 			</g:Tab>
