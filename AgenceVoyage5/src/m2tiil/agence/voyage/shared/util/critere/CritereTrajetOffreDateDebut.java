@@ -8,7 +8,7 @@ import m2tiil.agence.voyage.server.bdd.dao.OffreDAO;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 
-public class CritereTrajetDate extends Critere<Trajet,Date> {
+public class CritereTrajetOffreDateDebut extends Critere<Trajet,Date> {
 
 	
 	
@@ -43,7 +43,7 @@ public class CritereTrajetDate extends Critere<Trajet,Date> {
 			}break;
 			case BETWEEN : {
 				if(value2 == null) return false;
-				if( value1.compareTo(o.getDateDebut())>0 && value2.compareTo(o.getDateFin())<0){
+				if( value1.compareTo(o.getDateDebut())>0 && value2.compareTo(o.getDateDebut())<0){
 					return true;
 				}
 			}break;

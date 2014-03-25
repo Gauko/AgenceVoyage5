@@ -4,7 +4,7 @@ import java.util.Date;
 
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 
-public class CritereOffreDate extends Critere<Offre,Date> {
+public class CritereOffreDateDebut extends Critere<Offre,Date> {
 
 	
 	
@@ -30,7 +30,7 @@ public class CritereOffreDate extends Critere<Offre,Date> {
 		}break;
 		case BETWEEN : {
 			if(value2 == null) return false;
-			if( value1.compareTo(object.getDateDebut())<0 || value2.compareTo(object.getDateFin())>0){
+			if( value1.compareTo(object.getDateDebut())<0 || value2.compareTo(object.getDateDebut())>0){
 				return false;
 			}
 		}break;

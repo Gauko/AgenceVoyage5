@@ -2,7 +2,6 @@ package m2tiil.agence.voyage.server;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -26,8 +25,8 @@ import m2tiil.agence.voyage.shared.bdd.pojo.Type;
 import m2tiil.agence.voyage.shared.bdd.pojo.Utilisateur;
 import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
 import m2tiil.agence.voyage.shared.util.critere.Critere;
-import m2tiil.agence.voyage.shared.util.critere.CritereOffreDate;
-import m2tiil.agence.voyage.shared.util.critere.CritereTrajetDate;
+import m2tiil.agence.voyage.shared.util.critere.CritereTrajetOffreDateDebut;
+import m2tiil.agence.voyage.shared.util.critere.CritereTrajetOffreDateFin;
 
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -491,35 +490,52 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public static void main(String[] args) {
 		GreetingServiceImpl a = new GreetingServiceImpl();
 		
-		
+		/*
 		try {
 			a.login("toto@toto.com", "toto");
 		} catch (ConnectionException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		*/
 		
 		
-		/*
+		// recherche d'un trajet avec un départ entre 2014/03/01 et 2014/03/04
+		// => donc un trajet qui possède une offre ayant une date de début superieur à 2014/03/01
+		// => et un trajet qui possède une offre ayant une date de fin inferieur à 2014/03/04
+		
 		List<Critere<Trajet,?>> lc = new ArrayList<Critere<Trajet,?>>();
-		CritereTrajetDate c = new CritereTrajetDate();
+		
+		
+		CritereTrajetOffreDateDebut c = new CritereTrajetOffreDateDebut();
 		c.setActivated(true);
-		c.setComparator(Critere.Comparator.EQUAL);
-		c.setFirstValue(new Date("2014/03/03"));
+		c.setComparator(Critere.Comparator.SUPERIOR);
+		c.setFirstValue(new Date("2014/03/01"));
 		
 		lc.add(c);
 		
+		CritereTrajetOffreDateFin c2 = new CritereTrajetOffreDateFin();
+		c2.setActivated(true);
+		c2.setComparator(Critere.Comparator.INFERIOR);
+		c2.setFirstValue(new Date("2014/03/04"));
+		
+		lc.add(c);
+		//on a notre liste de critère de recherche de trajet
+		
 		try {
 			List<Trajet> res = a.rechercheTrajet("", lc);
-			
+			//print 
 			System.out.println(res.size());
+			for(Trajet t : res){
+				System.out.println("trajet n°"+t.getId());
+			}
 			
 		} catch (ConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		*/
+		
 		
 	}
 	
