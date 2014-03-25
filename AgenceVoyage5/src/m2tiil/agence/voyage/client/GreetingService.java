@@ -7,6 +7,7 @@ import m2tiil.agence.voyage.shared.ConnectionException;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
+import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
 import m2tiil.agence.voyage.shared.util.critere.Critere;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -26,6 +27,7 @@ public interface GreetingService extends RemoteService {
 	public List<Offre> getOffreDuJour(String token) throws ConnectionException;
 	public List<Trajet> rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere) throws ConnectionException;
 	public List<Offre> rechercheOffre(String token, List<Critere<Offre,?>> listCritere) throws ConnectionException;
+	public List<Ville> rechercheVille(String token, List<Critere<Ville,?>> listCritere) throws ConnectionException;
 //	public Object doReservation(String token, String user, Object panier, Object carteBanquaire) throws ConnectionException;
 
 	

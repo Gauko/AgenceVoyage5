@@ -7,6 +7,7 @@ import m2tiil.agence.voyage.shared.ConnectionException;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
+import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
 import m2tiil.agence.voyage.shared.util.critere.Critere;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -35,6 +36,9 @@ public interface GreetingServiceAsync {
 	
 	void rechercheOffre(String token, List<Critere<Offre,?>> listCritere,
 			AsyncCallback<List<Offre>> callback);
+	
+	void rechercheVille(String token, List<Critere<Ville,?>> listCritere,
+			AsyncCallback<List<Ville>> callback);
 
 
 //	void doReservation(String token, String user, Object panier,
