@@ -17,8 +17,10 @@ import m2tiil.agence.voyage.server.bdd.dao.UtilisateurDAO;
 import m2tiil.agence.voyage.server.bdd.dao.VilleDAO;
 import m2tiil.agence.voyage.shared.ConnectionException;
 import m2tiil.agence.voyage.shared.FieldVerifier;
+import m2tiil.agence.voyage.shared.bdd.pojo.MoyenDeTransport;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Reservation;
+import m2tiil.agence.voyage.shared.bdd.pojo.Societe;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
 import m2tiil.agence.voyage.shared.bdd.pojo.Utilisateur;
@@ -380,6 +382,86 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 		return l2;
 	}
+	
+	
+	public List<MoyenDeTransport> rechercheMoyenDeTransport(String token, List<Critere<MoyenDeTransport,?>> listCritere) throws ConnectionException{
+		verifToken(token);
+		List<MoyenDeTransport> l = moyenDeTransportDao.selectAll();
+		List<MoyenDeTransport> l2 = new ArrayList<MoyenDeTransport>();
+		boolean keep = true;
+		
+		for(MoyenDeTransport t : l){
+			keep = true;
+			
+			if(listCritere != null){
+				for(Critere c : listCritere){
+					if(c.isActivated()){
+						keep = keep && c.correspond(t);
+					}
+				}
+			}
+			
+			if(keep){
+				l2.add(t);
+			}
+		}
+		return l2;
+	}
+	
+	
+	
+	
+	public List<Reservation> rechercheReservation(String token, List<Critere<Reservation,?>> listCritere) throws ConnectionException{
+		verifToken(token);
+		List<Reservation> l = reservationDao.selectAll();
+		List<Reservation> l2 = new ArrayList<Reservation>();
+		boolean keep = true;
+		
+		for(Reservation t : l){
+			keep = true;
+			
+			if(listCritere != null){
+				for(Critere c : listCritere){
+					if(c.isActivated()){
+						keep = keep && c.correspond(t);
+					}
+				}
+			}
+			
+			if(keep){
+				l2.add(t);
+			}
+		}
+		return l2;
+	}
+	
+	public List<Societe> rechercheSociete(String token, List<Critere<Societe,?>> listCritere) throws ConnectionException{
+		verifToken(token);
+		List<Societe> l = societeDao.selectAll();
+		List<Societe> l2 = new ArrayList<Societe>();
+		boolean keep = true;
+		
+		for(Societe t : l){
+			keep = true;
+			
+			if(listCritere != null){
+				for(Critere c : listCritere){
+					if(c.isActivated()){
+						keep = keep && c.correspond(t);
+					}
+				}
+			}
+			
+			if(keep){
+				l2.add(t);
+			}
+		}
+		return l2;
+	}
+	
+	
+	
+	
 	
 	
 	
