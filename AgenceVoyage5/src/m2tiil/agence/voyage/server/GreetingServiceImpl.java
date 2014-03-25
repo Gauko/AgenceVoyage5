@@ -300,7 +300,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 * @throws ConnectionException
 	 */
-	public List<Trajet> rechercheTrajet(String token, List<Critere> listCritere) throws ConnectionException{
+	public List<Trajet> rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere) throws ConnectionException{
 		verifToken(token);
 		List<Trajet> l = trajetDao.selectAll();
 		List<Trajet> l2 = new ArrayList<Trajet>();
@@ -321,6 +321,35 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 		return l2;
 	}
+	
+	
+	
+	
+	public List<Offre> rechercheOffre(String token, List<Critere<Offre,?>> listCritere) throws ConnectionException{
+		verifToken(token);
+		List<Offre> l = offreDao.selectAll();
+		List<Offre> l2 = new ArrayList<Offre>();
+		boolean keep = true;
+		
+		for(Offre t : l){
+			keep = true;
+			for(Critere c : listCritere){
+				if(c.isActivated()){
+					keep = keep && c.correspond(t);
+				}
+			}
+			if(keep){
+				l2.add(t);
+			}
+		}
+		
+		
+		return l2;
+	}
+	
+	
+	
+	
 	
 	
 	/**
@@ -346,7 +375,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public static void main(String[] args) {
 		GreetingServiceImpl a = new GreetingServiceImpl();
 		
-		List<Critere> lc = new ArrayList<Critere>();
+		List<Critere<Trajet,?>> lc = new ArrayList<Critere<Trajet,?>>();
 		CritereTrajetDate c = new CritereTrajetDate();
 		c.setActivated(true);
 		c.setComparator(Critere.Comparator.EQUAL);

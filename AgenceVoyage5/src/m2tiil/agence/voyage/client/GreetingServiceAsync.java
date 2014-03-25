@@ -3,6 +3,7 @@ package m2tiil.agence.voyage.client;
 import java.util.HashMap;
 import java.util.List;
 
+import m2tiil.agence.voyage.shared.ConnectionException;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Trajet;
 import m2tiil.agence.voyage.shared.bdd.pojo.Type;
@@ -29,8 +30,12 @@ public interface GreetingServiceAsync {
 
 	void getOffreDuJour(String token, AsyncCallback<List<Offre>> callback);
 
-	void rechercheTrajet(String token, List<Critere> listCritere,
+	void rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere,
 			AsyncCallback<List<Trajet>> callback);
+	
+	void rechercheOffre(String token, List<Critere<Offre,?>> listCritere,
+			AsyncCallback<List<Offre>> callback);
+
 
 //	void doReservation(String token, String user, Object panier,
 //			Object carteBanquaire, AsyncCallback<Object> callback);
