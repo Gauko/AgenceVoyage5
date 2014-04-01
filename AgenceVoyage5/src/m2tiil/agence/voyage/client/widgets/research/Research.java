@@ -74,7 +74,7 @@ public class Research extends Composite {
 	}
 
 	private void initVilles() {
-		service.rechercheVille("", null, new AsyncCallback<List<Ville>>() {
+		service.rechercheVille(null, new AsyncCallback<List<Ville>>() {
 
 			@Override
 			public void onSuccess(List<Ville> result) {

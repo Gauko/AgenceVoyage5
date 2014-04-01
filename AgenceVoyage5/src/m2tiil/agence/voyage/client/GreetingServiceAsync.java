@@ -27,32 +27,26 @@ public interface GreetingServiceAsync {
 	void registerNewUser(String nom, String prenom, String password,
 			String mail, AsyncCallback<Void> callback);
 
-	void getTypeTransport(String token, AsyncCallback<List<Type>> callback);
+	void getTypeTransport(AsyncCallback<List<Type>> callback);
 
 //	void getCritere(String token,
 //			AsyncCallback<HashMap<String, List<String>>> callback);
 
 	void getOffreDuJour(AsyncCallback<List<Offre>> callback);
 
-	void rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere,
-			AsyncCallback<List<Trajet>> callback);
+	void rechercheTrajet(List<Critere<Trajet, ?>> listCritere, AsyncCallback<List<Trajet>> callback);
 	
-	void rechercheOffre(String token, List<Critere<Offre,?>> listCritere,
-			AsyncCallback<List<Offre>> callback);
+	void rechercheOffre(List<Critere<Offre, ?>> listCritere, AsyncCallback<List<Offre>> callback);
 	
-	void rechercheVille(String token, List<Critere<Ville,?>> listCritere,
-			AsyncCallback<List<Ville>> callback);
+	void rechercheVille(List<Critere<Ville, ?>> listCritere, AsyncCallback<List<Ville>> callback);
 
 	void rechercheReservation(String token,
 			List<Critere<Reservation, ?>> listCritere,
 			AsyncCallback<List<Reservation>> callback);
 
-	void rechercheMoyenDeTransport(String token,
-			List<Critere<MoyenDeTransport, ?>> listCritere,
-			AsyncCallback<List<MoyenDeTransport>> callback);
+	void rechercheMoyenDeTransport(List<Critere<MoyenDeTransport, ?>> listCritere, AsyncCallback<List<MoyenDeTransport>> callback);
 
-	void rechercheSociete(String token, List<Critere<Societe, ?>> listCritere,
-			AsyncCallback<List<Societe>> callback);
+	void rechercheSociete(List<Critere<Societe, ?>> listCritere, AsyncCallback<List<Societe>> callback);
 
 	void doReservation(String token, List<Reservation> panier, String cbNum, AsyncCallback<Void> callback);
 

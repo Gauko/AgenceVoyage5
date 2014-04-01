@@ -247,8 +247,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 * @throws ConnectionException
 	 */
-	public List<Type> getTypeTransport(String token) throws ConnectionException{
-		verifToken(token);
+	public List<Type> getTypeTransport(){
 		
 		List<Type> l = typeDao.selectAll();
 		
@@ -302,8 +301,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 * @throws ConnectionException
 	 */
-	public List<Trajet> rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere) throws ConnectionException{
-		verifToken(token);
+	public List<Trajet> rechercheTrajet( List<Critere<Trajet,?>> listCritere){
 		List<Trajet> l = trajetDao.selectAll();
 		List<Trajet> l2 = new ArrayList<Trajet>();
 		boolean keep = true;
@@ -330,8 +328,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	
-	public List<Offre> rechercheOffre(String token, List<Critere<Offre,?>> listCritere) throws ConnectionException{
-		verifToken(token);
+	public List<Offre> rechercheOffre( List<Critere<Offre,?>> listCritere) {
 		List<Offre> l = offreDao.selectAll();
 		List<Offre> l2 = new ArrayList<Offre>();
 		boolean keep = true;
@@ -358,8 +355,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	
-	public List<Ville> rechercheVille(String token, List<Critere<Ville,?>> listCritere) throws ConnectionException{
-		verifToken(token);
+	public List<Ville> rechercheVille(List<Critere<Ville,?>> listCritere) {
 		List<Ville> l = villeDao.selectAll();
 		List<Ville> l2 = new ArrayList<Ville>();
 		boolean keep = true;
@@ -383,8 +379,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 	
 	
-	public List<MoyenDeTransport> rechercheMoyenDeTransport(String token, List<Critere<MoyenDeTransport,?>> listCritere) throws ConnectionException{
-		verifToken(token);
+	public List<MoyenDeTransport> rechercheMoyenDeTransport(List<Critere<MoyenDeTransport,?>> listCritere){
 		List<MoyenDeTransport> l = moyenDeTransportDao.selectAll();
 		List<MoyenDeTransport> l2 = new ArrayList<MoyenDeTransport>();
 		boolean keep = true;
@@ -434,8 +429,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return l2;
 	}
 	
-	public List<Societe> rechercheSociete(String token, List<Critere<Societe,?>> listCritere) throws ConnectionException{
-		verifToken(token);
+	public List<Societe> rechercheSociete(List<Critere<Societe,?>> listCritere){
 		List<Societe> l = societeDao.selectAll();
 		List<Societe> l2 = new ArrayList<Societe>();
 		boolean keep = true;
@@ -527,17 +521,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		lc.add(c);
 		//on a notre liste de critère de recherche de trajet
 		
-		try {
-			List<Trajet> res = a.rechercheTrajet("", lc);
-			//print 
-			System.out.println(res.size());
-			for(Trajet t : res){
-				System.out.println("trajet n°"+t.getId());
-			}
-			
-		} catch (ConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<Trajet> res = a.rechercheTrajet(lc);
+		//print 
+		System.out.println(res.size());
+		for(Trajet t : res){
+			System.out.println("trajet n°"+t.getId());
 		}
 		
 		
