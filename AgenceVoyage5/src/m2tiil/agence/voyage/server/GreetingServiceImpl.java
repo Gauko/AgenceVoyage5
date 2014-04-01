@@ -277,8 +277,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	 * @return
 	 * @throws ConnectionException
 	 */
-	public List<Offre> getOffreDuJour(String token) throws ConnectionException{
-		verifToken(token);
+	public List<Offre> getOffreDuJour(){
+		
 		Date d = new Date();
 		List<Offre> l = offreDao.selectAll();
 		List<Offre> l2 = new ArrayList<Offre>();
@@ -474,7 +474,12 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public void doReservation(String token, List<Reservation> panier, String cbNum) throws ConnectionException{
 		verifToken(token);
 		
+		//do paiement, faire une exception pour paiement invalide
 		
+		
+		for(Reservation r : panier){
+			reservationDao.save(r);
+		}
 		
 		
 	}

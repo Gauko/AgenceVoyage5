@@ -32,7 +32,7 @@ public interface GreetingServiceAsync {
 //	void getCritere(String token,
 //			AsyncCallback<HashMap<String, List<String>>> callback);
 
-	void getOffreDuJour(String token, AsyncCallback<List<Offre>> callback);
+	void getOffreDuJour(AsyncCallback<List<Offre>> callback);
 
 	void rechercheTrajet(String token, List<Critere<Trajet,?>> listCritere,
 			AsyncCallback<List<Trajet>> callback);
@@ -53,6 +53,8 @@ public interface GreetingServiceAsync {
 
 	void rechercheSociete(String token, List<Critere<Societe, ?>> listCritere,
 			AsyncCallback<List<Societe>> callback);
+
+	void doReservation(String token, List<Reservation> panier, String cbNum, AsyncCallback<Void> callback);
 
 
 //	void doReservation(String token, String user, Object panier,
