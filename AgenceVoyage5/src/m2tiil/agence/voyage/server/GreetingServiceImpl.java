@@ -489,14 +489,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public static void main(String[] args) {
 		GreetingServiceImpl a = new GreetingServiceImpl();
 		
-		/*
+		
 		try {
 			a.login("toto@toto.com", "toto");
 		} catch (ConnectionException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		*/
+		
 		
 		
 		// recherche d'un trajet avec un départ entre 2014/03/01 et 2014/03/04
