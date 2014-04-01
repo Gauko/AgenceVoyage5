@@ -66,9 +66,10 @@ public class OffreDAO
 		ArrayList<Offre> Offre = selectAll();
 		Iterator<Offre> i = Offre.iterator();
 		Offre o = new Offre();
+		o = i.next();
 		for(;i.hasNext() ; o = i.next())
 		{
-			if (o.getLibelle() == nom)
+			if (o.getLibelle().equals(nom))
 			{
 				return o;
 			}

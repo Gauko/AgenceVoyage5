@@ -57,9 +57,10 @@ public class SocieteDAO
 		ArrayList<Societe> Societes = selectAll();
 		Iterator<Societe> i = Societes.iterator();
 		Societe so = new Societe();
+		so = i.next();
 		for(;i.hasNext() ; so = i.next())
 		{
-			if (so.getNom() == nom)
+			if (so.getNom().equals(nom))
 			{
 				return so;
 			}

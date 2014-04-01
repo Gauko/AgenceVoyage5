@@ -104,13 +104,16 @@ public class TestSessionFactory {
 		}
 	}
 	
-	public static void testInsert()
+	public void testInsert()
 	{
 		System.out.println("Insertion du moyen de transport PousPous ChinaAirlines");
 		Type t = new Type(0, "PousPous");
 		int idT = TypeDAO.save(t);
 		Societe s = new Societe(0,"ChinaAirlines");
 		int idS = SocieteDAO.save(s);
+		
+		int idt2 = TypeDAO.findByLibelle("PousPous").getId();
+		System.out.println("id t : "+idT+" id s : "+idS+"id 2 t : "+idt2);
 		
 		MoyenDeTransport m = new MoyenDeTransport(0, "PousPous ChinaAirlines", idT, idS);
 		MoyenDeTransportDAO.save(m);
@@ -128,10 +131,20 @@ public class TestSessionFactory {
 		testAfficheVille();
 	}
 	
+	public void testFind()
+	{
+		/*Societe s1 = SocieteDAO.findById(2);
+		System.out.println(s1.toString());*/
+		MoyenDeTransport s2 = MoyenDeTransportDAO.findByNom("Car AirFrance");
+		
+		System.out.println(s2.toString());
+	}
+	
 	public static void main(String[] args) {
-
-		
-		
+			TestSessionFactory t = new TestSessionFactory();
+			//t.testAffiche();
+			t.testInsert();
+			//t.testFind();
 		
 
 	}

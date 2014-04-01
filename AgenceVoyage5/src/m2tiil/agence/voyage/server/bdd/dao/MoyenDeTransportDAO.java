@@ -25,10 +25,10 @@ public class MoyenDeTransportDAO
 		{
 			MoyenDeTransport a = (MoyenDeTransport)res.get(i);
 			MoyenDeTransport m = new MoyenDeTransport();
-			m.setId(m.getId());
+			m.setId(a.getId());
 			m.setNom(a.getNom());
 			m.setSociete(a.getSociete());
-			m.setType(m.getType());
+			m.setType(a.getType());
 
 			
 			MoyenDeTransports.add(m);
@@ -59,9 +59,11 @@ public class MoyenDeTransportDAO
 		ArrayList<MoyenDeTransport> MoyenDeTransports = selectAll();
 		Iterator<MoyenDeTransport> i = MoyenDeTransports.iterator();
 		MoyenDeTransport m = new MoyenDeTransport();
+		m = i.next();
 		for(;i.hasNext() ; m = i.next())
 		{
-			if (m.getNom() == nom)
+			System.out.println(m);
+			if (m.getNom().equals(nom))
 			{
 				return m;
 			}

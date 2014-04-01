@@ -57,9 +57,10 @@ public class TypeDAO
 		ArrayList<Type> Types = selectAll();
 		Iterator<Type> i = Types.iterator();
 		Type v = new Type();
+		v = i.next();
 		for(;i.hasNext() ; v = i.next())
 		{
-			if (v.getLibelle() == libelle)
+			if (v.getLibelle().equals(libelle))
 			{
 				return v;
 			}
