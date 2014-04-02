@@ -93,7 +93,8 @@ public class SocieteDAO
 		tx.commit();
 		
 		s.close();
-		return findByNom(so.getNom()).getId();
+		int id = findByNom(so.getNom()).getId();
+		return id;
 	}
 	
 	public static boolean update(Societe origine, Societe modif)

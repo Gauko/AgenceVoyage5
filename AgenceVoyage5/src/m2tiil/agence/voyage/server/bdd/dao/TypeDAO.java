@@ -93,7 +93,9 @@ public class TypeDAO
 		tx.commit();
 		
 		s.close();
-		return findByLibelle(t.getLibelle()).getId();
+		
+		int id = findByLibelle(t.getLibelle()).getId();
+		return id;
 	}
 	
 	public static boolean update(Type origine, Type modif)

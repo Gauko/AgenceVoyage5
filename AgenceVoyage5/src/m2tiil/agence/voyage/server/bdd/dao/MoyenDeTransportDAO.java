@@ -68,7 +68,7 @@ public class MoyenDeTransportDAO
 				return m;
 			}
 		}
-		return null;
+		return new MoyenDeTransport();
 	}
 	
 	public static boolean delete(MoyenDeTransport m)
@@ -96,7 +96,8 @@ public class MoyenDeTransportDAO
 		tx.commit();
 		
 		s.close();
-		return findByNom(m.getNom()).getId();
+		int id = findByNom(m.getNom()).getId();
+		return id;
 	}
 	
 	public static boolean update(MoyenDeTransport origine, MoyenDeTransport modif)
