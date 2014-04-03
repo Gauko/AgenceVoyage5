@@ -8,6 +8,6 @@
 	</ui:style>
 
 	<g:FlowPanel styleName="{style.panel}">
-		<p1:CellList ui:field="cellList" height="300px"/>
+		<p1:CellTable ui:field="cellTable" width="449px" pageSize="1"/>
 	</g:FlowPanel>
 </ui:UiBinder>

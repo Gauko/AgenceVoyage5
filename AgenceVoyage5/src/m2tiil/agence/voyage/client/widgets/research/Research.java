@@ -1,14 +1,22 @@
 package m2tiil.agence.voyage.client.widgets.research;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import m2tiil.agence.voyage.client.GreetingService;
 import m2tiil.agence.voyage.client.GreetingServiceAsync;
+import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
+import m2tiil.agence.voyage.shared.util.critere.Critere;
+import m2tiil.agence.voyage.shared.util.critere.Critere.Comparator;
+import m2tiil.agence.voyage.shared.util.critere.CritereOffreDateDebut;
+import m2tiil.agence.voyage.shared.util.critere.CritereOffreDateRetour;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -90,6 +98,44 @@ public class Research extends Composite {
 				Window.alert("Ville null");
 			}
 		});
+	}
+	
+	
+	@UiHandler("validate")
+	public void acceptConnexion(ClickEvent e){
+		List<Critere<Offre,?>> listCritere = new ArrayList<Critere<Offre,?>>();
+		
+		//critères dates
+		CritereOffreDateDebut c1 = new CritereOffreDateDebut();
+		c1.setActivated(true);
+		c1.setComparator(Comparator.EQUAL);
+		c1.setFirstValue(dateDepart.getValue());
+		listCritere.add(c1);
+		
+		
+		CritereOffreDateRetour c2 = new CritereOffreDateRetour();
+		c2.setActivated(true);
+		c2.setComparator(Comparator.EQUAL);
+		c2.setFirstValue(dateArrive.getValue());
+		listCritere.add(c2);
+		
+		
+		
+		if(true){
+			service.rechercheOffre(listCritere, new AsyncCallback<List<Offre>>() {
+				
+				@Override
+				public void onSuccess(List<Offre> result) {
+					
+				}
+				
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("User not exist");
+					
+				}
+			});
+		}
 	}
 
 }

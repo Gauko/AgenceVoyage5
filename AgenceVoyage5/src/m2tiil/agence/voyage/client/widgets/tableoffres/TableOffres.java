@@ -3,7 +3,6 @@ package m2tiil.agence.voyage.client.widgets.tableoffres;
 import java.util.ArrayList;
 import java.util.List;
 
-import m2tiil.agence.voyage.client.AgenceVoyage5;
 import m2tiil.agence.voyage.client.GreetingService;
 import m2tiil.agence.voyage.client.GreetingServiceAsync;
 import m2tiil.agence.voyage.client.widgets.shopingcard.Shopingcard;
@@ -15,19 +14,17 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.DefaultSelectionEventManager;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.MultiSelectionModel;
-import com.google.gwt.user.client.ui.Button;
 
 
 
@@ -126,13 +123,11 @@ public class TableOffres extends Composite {
 	@UiHandler("AjouterPanier")
 	public void addOfferToShopingCardHandler(ClickEvent e) {
 
-		List<String> offres = new ArrayList<String>();
+		List<Offre> offres = new ArrayList<Offre>();
 		for (Offre o : this.multiSelectionModel.getSelectedSet()) {
-			offres.add(o.toString());
+			offres.add(o);
 		}
-		CellList<String> list = this.panier.getCellList();
-		list.setRowCount(offres.size(), true);
-		list.setRowData(0, offres);
+		this.panier.getListOffers().setList(offres);
 	}
 
 

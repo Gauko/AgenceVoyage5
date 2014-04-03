@@ -7,6 +7,7 @@ import m2tiil.agence.voyage.client.widgets.tableoffres.TableOffres;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -41,10 +42,12 @@ public class AgenceVoyage5 implements EntryPoint {
 	public void onModuleLoad() {
 
 		VerticalPanel vpanel = new VerticalPanel();
+		HorizontalPanel hpanel = new HorizontalPanel();
 		vpanel.add(new Connection());
+		hpanel.add(new Research());
+		hpanel.add(this.panier);
+		vpanel.add(hpanel);
 		vpanel.add(this.offres);
-		vpanel.add(new Research());
-		vpanel.add(this.panier);
 		this.offres.setPanier(panier);
 		RootPanel.get("page1").add(vpanel);
 	}
