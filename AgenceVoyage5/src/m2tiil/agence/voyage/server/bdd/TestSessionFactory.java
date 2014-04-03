@@ -106,7 +106,7 @@ public class TestSessionFactory {
 	
 	public void testInsert()
 	{
-		System.out.println("Insertion du moyen de transport PousPous ChinaAirlines");
+		/*System.out.println("Insertion du moyen de transport PousPous ChinaAirlines");
 		Type t = new Type(0, "PousPous");
 		int idT = TypeDAO.save(t);
 		Societe s = new Societe(0,"ChinaAirlines");
@@ -116,6 +116,12 @@ public class TestSessionFactory {
 		System.out.println("id t : "+idT+" id s : "+idS+"id 2 t : "+idt2);
 		
 		MoyenDeTransport m = new MoyenDeTransport(0, "PousPous ChinaAirlines", idT, idS);
+		MoyenDeTransportDAO.save(m);*/
+		
+		Type t = TypeDAO.findByLibelle("Avion");
+		Societe s = SocieteDAO.findByNom("Air France");
+		
+		MoyenDeTransport m = new MoyenDeTransport(0, "Bleriot 1902", t.getId(), s.getId());
 		MoyenDeTransportDAO.save(m);
 	}
 	
