@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Random;
 
 import m2tiil.agence.voyage.client.GreetingService;
 import m2tiil.agence.voyage.server.bdd.dao.MoyenDeTransportDAO;
@@ -25,10 +26,7 @@ import m2tiil.agence.voyage.shared.bdd.pojo.Type;
 import m2tiil.agence.voyage.shared.bdd.pojo.Utilisateur;
 import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
 import m2tiil.agence.voyage.shared.util.critere.Critere;
-import m2tiil.agence.voyage.shared.util.critere.CritereTrajetOffreDateDebut;
-import m2tiil.agence.voyage.shared.util.critere.CritereTrajetOffreDateFin;
 
-import com.google.gwt.user.client.Random;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -195,9 +193,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 		
 		//
+		Random r = new Random();
 		
 		do{
-			token = "" + Random.nextInt();
+			token = "" + r.nextInt();
 		}while(i<nbTentative && !listTokens.containsKey(token));
 		
 		if(i == nbTentative){
@@ -502,7 +501,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		// recherche d'un trajet avec un départ entre 2014/03/01 et 2014/03/04
 		// => donc un trajet qui possède une offre ayant une date de début superieur à 2014/03/01
 		// => et un trajet qui possède une offre ayant une date de fin inferieur à 2014/03/04
-		
+		/*
 		List<Critere<Trajet,?>> lc = new ArrayList<Critere<Trajet,?>>();
 		
 		
@@ -529,7 +528,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 		
 		
-		
+		*/
 	}
 	
 	
