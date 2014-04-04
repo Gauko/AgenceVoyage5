@@ -33,7 +33,7 @@ public class TableOffres extends Composite {
 	private static final Binder binder = GWT.create(Binder.class);
 
 	final SimplePager pager = new SimplePager();
-	final ListDataProvider<Offre> listOffers = new ListDataProvider<Offre>();
+	private ListDataProvider<Offre> listOffers = new ListDataProvider<Offre>();
 	protected MultiSelectionModel<Offre> multiSelectionModel;
 
 	private final GreetingServiceAsync service = GWT.create(GreetingService.class);
@@ -177,6 +177,14 @@ public class TableOffres extends Composite {
 	public void setPanier(Shopingcard panier) {
 
 		this.panier = panier;
+	}
+
+
+
+	
+	public void setListOffers(ListDataProvider<Offre> listOffers) {
+	
+		this.listOffers = listOffers;
 	}
 
 }

@@ -44,7 +44,7 @@ public class AgenceVoyage5 implements EntryPoint {
 		VerticalPanel vpanel = new VerticalPanel();
 		HorizontalPanel hpanel = new HorizontalPanel();
 		vpanel.add(new Connection());
-		hpanel.add(new Research());
+		hpanel.add(new Research(offres));
 		hpanel.add(this.panier);
 		vpanel.add(hpanel);
 		vpanel.add(this.offres);

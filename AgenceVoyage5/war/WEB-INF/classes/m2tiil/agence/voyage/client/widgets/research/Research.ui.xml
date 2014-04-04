@@ -12,8 +12,8 @@
 			<g:Tab text="New tab">
 				<g:VerticalPanel width="5cm" height="3cm">
 					<g:HorizontalPanel height="25px" width="402px">
-						<g:RadioButton name="new name" height="35px" text="Aller-Simple" width="190px"/>
-						<g:RadioButton name="Aller-Retour" height="20px" width="197px">Aller-Retour</g:RadioButton>
+						<g:RadioButton name="radioTicketType" height="35px" text="Aller-Simple" width="190px" checked="true"/>
+						<g:RadioButton name="radioTicketType" height="20px" width="197px">Aller-Retour</g:RadioButton>
 					</g:HorizontalPanel>
 					<g:HorizontalPanel width="405px">
 						<g:ListBox width="202px" ui:field="aeroportDepart"/>

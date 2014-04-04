@@ -45,9 +45,7 @@ public class Shopingcard extends Composite {
 		createOffersTable();
 	}
 	
-	private static interface removeValue<C>{
-		C removeValue(Offre offre);
-	}
+	
 	
 	public void createOffersTable() {
 
@@ -92,8 +90,11 @@ public class Shopingcard extends Composite {
 		cellTable.addColumn(titleCollumn, "Intitulle");
 		cellTable.addColumn(priceColumn, "Prix");
 		cellTable.addColumn(column);
-		final SimplePager pager = new SimplePager();
-		pager.setDisplay(cellTable);
+//		final SimplePager pager = new SimplePager();
+//		pager.setDisplay(cellTable);
+		
+		listOffers.addDataDisplay(cellTable);
+		
 	}
 
 	public CellTable<Offre> getCellTable() {

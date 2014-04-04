@@ -1,16 +1,19 @@
 package m2tiil.agence.voyage.client.widgets.research;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import m2tiil.agence.voyage.client.GreetingService;
 import m2tiil.agence.voyage.client.GreetingServiceAsync;
+import m2tiil.agence.voyage.client.widgets.tableoffres.TableOffres;
 import m2tiil.agence.voyage.shared.bdd.pojo.Offre;
 import m2tiil.agence.voyage.shared.bdd.pojo.Ville;
 import m2tiil.agence.voyage.shared.util.critere.Critere;
 import m2tiil.agence.voyage.shared.util.critere.Critere.Comparator;
 import m2tiil.agence.voyage.shared.util.critere.CritereOffreDateDebut;
 import m2tiil.agence.voyage.shared.util.critere.CritereOffreDateRetour;
+import m2tiil.agence.voyage.shared.util.critere.CritereOffreVilleDepartArrive;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -50,13 +53,16 @@ public class Research extends Composite {
 			.create(GreetingService.class);
 
 	protected List<Ville> villes;
+	
+	private TableOffres tableOffre;
 
 	interface Binder extends UiBinder<Widget, Research> {
 	}
 
-	public Research() {
+	public Research(TableOffres tableOffre) {
 		initWidget(binder.createAndBindUi(this));
 		init();
+		this.tableOffre = tableOffre;
 	}
 
 	public void init() {
@@ -109,15 +115,39 @@ public class Research extends Composite {
 		CritereOffreDateDebut c1 = new CritereOffreDateDebut();
 		c1.setActivated(true);
 		c1.setComparator(Comparator.EQUAL);
-		c1.setFirstValue(dateDepart.getValue());
+		Date d = dateDepart.getValue();
+		if(d==null){
+			return;
+		}
+		d.setHours(0);
+		d.setMinutes(0);
+		d.setSeconds(0);
+		c1.setFirstValue(d);
 		listCritere.add(c1);
 		
 		
 		CritereOffreDateRetour c2 = new CritereOffreDateRetour();
 		c2.setActivated(true);
 		c2.setComparator(Comparator.EQUAL);
-		c2.setFirstValue(dateArrive.getValue());
+		d = dateArrive.getValue();
+		if(d==null){
+			return;
+		}
+		d.setHours(0);
+		d.setMinutes(0);
+		d.setSeconds(0);
+		c2.setFirstValue(d);
 		listCritere.add(c2);
+		
+		System.out.println(""+dateDepart.getValue()+"  to  "+dateArrive.getValue());
+		
+		
+//		CritereOffreVilleDepartArrive c3 = new CritereOffreVilleDepartArrive();
+//		c3.setActivated(true);
+//		c3.setFirstValue(villes.get(aeroportDepart.getSelectedIndex()));
+//		c3.setFirstValue(villes.get(aeroportArrive.getSelectedIndex()));
+//		listCritere.add(c3);
+		
 		
 		
 		
@@ -126,12 +156,12 @@ public class Research extends Composite {
 				
 				@Override
 				public void onSuccess(List<Offre> result) {
-					
+					tableOffre.getListOffers().setList(result);
 				}
 				
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("User not exist");
+					Window.alert("error on research");
 					
 				}
 			});
