@@ -9,5 +9,8 @@
 
 	<g:FlowPanel styleName="{style.panel}">
 		<p1:CellTable ui:field="cellTable" width="449px" pageSize="1"/>
+		<g:VerticalPanel width="447px" height="35px" horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+			<g:Button text="Buy" ui:field="buttonBuy" width="65px"/>
+		</g:VerticalPanel>
 	</g:FlowPanel>
 </ui:UiBinder>
